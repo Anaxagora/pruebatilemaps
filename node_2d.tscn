@@ -1,6 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7efrafhyk3f1"]
+[gd_scene load_steps=24 format=3 uid="uid://c7efrafhyk3f1"]
 
 [ext_resource type="Texture2D" uid="uid://bxpf7wyf8h1gi" path="res://dice_1.png" id="1_d21ai"]
+[ext_resource type="Script" uid="uid://bmpytk8e5v31t" path="res://node_2d.gd" id="1_hqns4"]
+[ext_resource type="Script" uid="uid://c7lv27p8gl658" path="res://camera_2d.gd" id="1_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://dxycqxj4tpvi1" path="res://dice_2.png" id="2_rj586"]
 [ext_resource type="Texture2D" uid="uid://boxeme8ujjrrj" path="res://dice_3.png" id="3_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://cyjnxjvuxha06" path="res://dice_4.png" id="4_ir8iy"]
@@ -9,6 +11,8 @@
 [ext_resource type="Script" uid="uid://1t3jd85tho5j" path="res://tile_map_layer.gd" id="7_0h7mo"]
 [ext_resource type="Texture2D" uid="uid://flvrurh5xux3" path="res://dice_0.png" id="7_rj586"]
 [ext_resource type="Texture2D" uid="uid://fir3nx6v7xb3" path="res://floor_7.png" id="8_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://d15thxm60prbo" path="res://floor_8.png" id="9_ir8iy"]
+[ext_resource type="Script" uid="uid://boo0prnem8myx" path="res://ui_turno.gd" id="13_0h7mo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rj586"]
 texture = ExtResource("7_rj586")
@@ -50,6 +54,11 @@ texture = ExtResource("8_4d7sh")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ta5nu"]
+texture = ExtResource("9_ir8iy")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_fs4d3"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_rj586")
@@ -60,9 +69,26 @@ sources/4 = SubResource("TileSetAtlasSource_x0ka3")
 sources/5 = SubResource("TileSetAtlasSource_0h7mo")
 sources/6 = SubResource("TileSetAtlasSource_nr8wp")
 sources/7 = SubResource("TileSetAtlasSource_d2bti")
+sources/8 = SubResource("TileSetAtlasSource_ta5nu")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 2.04204
+offset = Vector2(-160, 0)
+anchor_mode = 0
+script = ExtResource("1_x0ka3")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_hqns4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Node2D"]
 tile_set = SubResource("TileSet_fs4d3")
 script = ExtResource("7_0h7mo")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("13_0h7mo")
+
+[node name="TurnoLabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
