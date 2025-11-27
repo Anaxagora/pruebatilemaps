@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c7efrafhyk3f1"]
+[gd_scene load_steps=27 format=3 uid="uid://c7efrafhyk3f1"]
 
 [ext_resource type="Texture2D" uid="uid://bxpf7wyf8h1gi" path="res://dice_1.png" id="1_d21ai"]
 [ext_resource type="Script" uid="uid://bmpytk8e5v31t" path="res://node_2d.gd" id="1_hqns4"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://fir3nx6v7xb3" path="res://floor_7.png" id="8_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://d15thxm60prbo" path="res://floor_8.png" id="9_ir8iy"]
 [ext_resource type="Script" uid="uid://boo0prnem8myx" path="res://ui_turno.gd" id="13_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://b317857qo4veg" path="res://dice_question.png" id="14_nr8wp"]
+[ext_resource type="Script" uid="uid://btx2srynnvhgm" path="res://hud.gd" id="14_ta5nu"]
+[ext_resource type="Script" uid="uid://c65rs2a524fdb" path="res://help_menu_button.gd" id="16_flf07"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rj586"]
 texture = ExtResource("7_rj586")
@@ -92,3 +95,23 @@ script = ExtResource("13_0h7mo")
 [node name="TurnoLabel" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("14_ta5nu")
+
+[node name="HelpMenuButton" type="MenuButton" parent="HUD"]
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("14_nr8wp")
+item_count = 1
+popup/item_0/id = 0
+script = ExtResource("16_flf07")
+
+[node name="SketchTextureRect" type="TextureRect" parent="HUD"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
