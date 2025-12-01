@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rfyhs5npc354"
-path="res://.godot/imported/direction_e.png-97c8617d4417f501b42db0a1430c070f.ctex"
+uid="uid://cl167q1173sv"
+path="res://.godot/imported/escalera_llana_arriba.PNG-1e63517697f210bd09465219dab67870.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/direction_e.png"
-dest_files=["res://.godot/imported/direction_e.png-97c8617d4417f501b42db0a1430c070f.ctex"]
+source_file="res://croquis/escalera_llana_arriba.PNG"
+dest_files=["res://.godot/imported/escalera_llana_arriba.PNG-1e63517697f210bd09465219dab67870.ctex"]
 
 [params]
 

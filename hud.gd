@@ -38,6 +38,8 @@ func _on_sketch_selected(shape, direction):
 	if tex:
 		sketch.texture = tex
 		sketch.visible = true
+		sketch.position.x = -35
+		sketch.position.y = 150
 	else:
 		print("❌ No existe la imagen:", path)
 func _unhandled_input(event):

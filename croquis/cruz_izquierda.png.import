@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0dur7acbp36b"
-path="res://.godot/imported/cruz_izquierda.png-1357401a8e8be8d14b7ea4982fea1a6a.ctex"
+uid="uid://dnu5o54qktlnu"
+path="res://.godot/imported/cruz_izquierda.PNG-caa8a0e2a126a6bea7871f2f17279723.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/cruz_izquierda.png"
-dest_files=["res://.godot/imported/cruz_izquierda.png-1357401a8e8be8d14b7ea4982fea1a6a.ctex"]
+source_file="res://croquis/cruz_izquierda.PNG"
+dest_files=["res://.godot/imported/cruz_izquierda.PNG-caa8a0e2a126a6bea7871f2f17279723.ctex"]
 
 [params]
 

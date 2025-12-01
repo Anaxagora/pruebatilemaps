@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgnp1ggc8iye8"
-path="res://.godot/imported/cruz_arriba.png-a861f3e5c9e27deedaef2a4c39df9368.ctex"
+uid="uid://dnb6jvn0o3ixt"
+path="res://.godot/imported/cruz_arriba.PNG-422d1f4f75fbc42d4e012d550ec62ada.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/cruz_arriba.png"
-dest_files=["res://.godot/imported/cruz_arriba.png-a861f3e5c9e27deedaef2a4c39df9368.ctex"]
+source_file="res://croquis/cruz_arriba.PNG"
+dest_files=["res://.godot/imported/cruz_arriba.PNG-422d1f4f75fbc42d4e012d550ec62ada.ctex"]
 
 [params]
 

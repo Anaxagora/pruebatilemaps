@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br2807o4asofa"
-path="res://.godot/imported/cruz.png-ea1dc3eb3fe21262cf1758d49e27454a.ctex"
+uid="uid://c8nnaoxyx4ign"
+path="res://.godot/imported/escalera_empinada_derecha.PNG-09106907e7fc39dc48a439c271170402.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/cruz.png"
-dest_files=["res://.godot/imported/cruz.png-ea1dc3eb3fe21262cf1758d49e27454a.ctex"]
+source_file="res://croquis/escalera_empinada_derecha.PNG"
+dest_files=["res://.godot/imported/escalera_empinada_derecha.PNG-09106907e7fc39dc48a439c271170402.ctex"]
 
 [params]
 

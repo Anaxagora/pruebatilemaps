@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b410ohqaio8xl"
-path="res://.godot/imported/escalera_empinada.png-bef01142368ca18d932cb8eec2ab8c40.ctex"
+uid="uid://3w0hnnw3o4p8"
+path="res://.godot/imported/escalera_llana_izquierda.PNG-c06184279f15378aed8aaa53edb2713c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/escalera_empinada.png"
-dest_files=["res://.godot/imported/escalera_empinada.png-bef01142368ca18d932cb8eec2ab8c40.ctex"]
+source_file="res://croquis/escalera_llana_izquierda.PNG"
+dest_files=["res://.godot/imported/escalera_llana_izquierda.PNG-c06184279f15378aed8aaa53edb2713c.ctex"]
 
 [params]
 

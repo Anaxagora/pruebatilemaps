@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbi4tbh6kxxf1"
-path="res://.godot/imported/direction_w.png-26659fdf1b3ef655e17d1971ee8732a0.ctex"
+uid="uid://bbxunhadqhmi6"
+path="res://.godot/imported/escalera_empinada_arriba.PNG-a890ac7684a6b2346ecf6d3ee0ae0624.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/direction_w.png"
-dest_files=["res://.godot/imported/direction_w.png-26659fdf1b3ef655e17d1971ee8732a0.ctex"]
+source_file="res://croquis/escalera_empinada_arriba.PNG"
+dest_files=["res://.godot/imported/escalera_empinada_arriba.PNG-a890ac7684a6b2346ecf6d3ee0ae0624.ctex"]
 
 [params]
 

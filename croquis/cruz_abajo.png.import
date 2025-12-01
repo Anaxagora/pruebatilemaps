@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dackhfwmd3fwp"
-path="res://.godot/imported/cruz_abajo.png-29b93a411905191728ad86304144ad30.ctex"
+uid="uid://df40rbd7hudhb"
+path="res://.godot/imported/cruz_abajo.PNG-c335aef5228052fc3bff668584a2cc96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croquis/cruz_abajo.png"
-dest_files=["res://.godot/imported/cruz_abajo.png-29b93a411905191728ad86304144ad30.ctex"]
+source_file="res://croquis/cruz_abajo.PNG"
+dest_files=["res://.godot/imported/cruz_abajo.PNG-c335aef5228052fc3bff668584a2cc96.ctex"]
 
 [params]
 

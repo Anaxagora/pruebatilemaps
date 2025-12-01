@@ -69,6 +69,10 @@ func _unhandled_input(event: InputEvent) -> void:
 						set_cell(cell, current_player_tile, Vector2i(0, 0), 0)
 					print("🎲 Intento ", current_try, ": ", is_valid)
 					print("✅Dado desplegado correctamente")
+					# 🔥 Crear estatua en la celda inicial del dado
+					var spawn_cell = selected_cells[0]
+					var statue_manager = get_node("../StatueManager")
+					statue_manager.spawn_statue_for_player(current_player_tile, spawn_cell)
 					break
 				else:
 					for cell in selected_cells:
