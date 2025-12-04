@@ -39,6 +39,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				print("🀄 No se puede seleccionar la celda: ", cell)
 			# Spacebar: cambiar todas las seleccionadas
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
+		if selected_cells.size() < max_tiles:
+			print("⚠️ Debes seleccionar 6 tiles antes de finalizar tu turno.")
+			return
 		if selected_cells.size() == 6:
 			toca_tile_jugador = false
 			for cell in selected_cells:

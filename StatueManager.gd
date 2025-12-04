@@ -14,6 +14,51 @@ var move_mode := false
 var selected_statue: Sprite2D = null
 var remaining_moves := 3
 
+# --- SISTEMA DE VICTORIA ---
+var score_fire := 0
+var score_water := 0
+var max_row := 0   # se calcula al iniciar
+
+
+# ============================================================
+#                         READY
+# ============================================================
+func _ready():
+	# Fila más baja del tablero (zona azul)
+	max_row = tilemap.get_used_rect().size.y - 1
+	print("Max row detectada:", max_row)
+
+
+# ============================================================
+#              FUNCIÓN PARA DETECTAR LLEGADA A BASE
+# ============================================================
+func _check_statue_reached_base(player_id: int, cell: Vector2i):
+
+	# FIRE (id=7) llega a fila 0 (naranja – base enemiga)
+	if player_id == 7 and cell.y == max_row:
+		score_fire += 1
+		print("🔥 FIRE llegó a la base enemiga! Total:", score_fire)
+		_check_win_condition()
+
+	# WATER llega a fila final (azul – base enemiga)
+	elif player_id != 7 and cell.y == 0:
+		score_water += 1
+		print("💧 WATER llegó a la base enemiga! Total:", score_water)
+		_check_win_condition()
+
+
+# ============================================================
+#                     FUNCIÓN DE VICTORIA
+# ============================================================
+func _check_win_condition():
+	if score_fire >= 2:
+		print("\n🏆 ¡GANÓ FIRE!")
+		get_tree().quit()
+
+	if score_water >= 2:
+		print("\n🏆 ¡GANÓ WATER!")
+		get_tree().quit()
+
 
 # ============================================================
 #                CREAR ESTATUA AL DESPLEGAR DADO
@@ -37,15 +82,15 @@ func spawn_statue_for_player(player_id: int, cell: Vector2i):
 
 	print("🗿 Estatua creada en celda:", cell, "Jugador:", player_id)
 
+	# 🔥 NUEVA VALIDACIÓN: si nació en base enemiga
+	_check_statue_reached_base(player_id, cell)
+
 
 # ============================================================
 #                        INPUT GENERAL
 # ============================================================
 func _unhandled_input(event):
 
-	# ===================
-	# ACTIVAR MODO MOVER
-	# ===================
 	if event.is_action_pressed("move_statue_mode"):  # tecla E
 		if remaining_moves <= 0:
 			print("⛔ No quedan movimientos este turno.")
@@ -57,17 +102,11 @@ func _unhandled_input(event):
 		print("👉 Hacé click en una estatua.")
 		return
 
-	# ===================
-	# CLICK PARA SELECCIONAR ESTATUA
-	# ===================
 	if move_mode and event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		_select_statue()
 		return
 
-	# ===================
-	# MOVER ESTATUA CON FLECHAS
-	# ===================
 	if selected_statue and remaining_moves > 0:
 
 		if event.is_action_pressed("ui_up"):
@@ -111,54 +150,45 @@ func _select_statue():
 
 
 # ============================================================
-#                MOVER ESTATUA 1 TILE + CONSUMIR MOVIMIENTO
+#                MOVER ESTATUA + CONSUMIR MOVIMIENTO
 # ============================================================
 func _move_selected_statue(direction: Vector2i):
 	if not selected_statue:
 		return
 
-	# Celda actual de la estatua
+	# Celda actual
 	var current_cell = tilemap.local_to_map(
 		tilemap.to_local(selected_statue.global_position)
 	)
 
-	# Celda destino
+	# Nueva celda
 	var new_cell = current_cell + direction
 
-	# ================================
-	# 🔍 VALIDACIÓN 1: dentro del tablero
-	# ================================
+	# Validación 1: dentro del tablero
 	if not tilemap.get_used_rect().has_point(new_cell):
 		print("❌ Movimiento inválido: fuera del tablero.")
 		selected_statue = null
 		move_mode = false
 		return
 
-	# ================================
-	# 🔍 VALIDACIÓN 2: la celda tiene un dado (tile != 0)
-	# ================================
+	# Validación 2: la celda tiene un dado
 	var tile_id = tilemap.get_cell_source_id(new_cell)
 	if tile_id == 0:
-		print("❌ Movimiento inválido: esa casilla está vacía (sin dado).")
+		print("❌ Movimiento inválido: casilla vacía.")
 		selected_statue = null
 		move_mode = false
 		return
 
-	# ================================
-	# 🔍 VALIDACIÓN 3: no haya otra estatua
-	# ================================
+	# Validación 3: no haya otra estatua
 	if statues.has(new_cell):
-		print("❌ Movimiento bloqueado: ya hay una estatua en esa tile.")
+		print("❌ Movimiento bloqueado: ya hay una estatua.")
 		selected_statue = null
 		move_mode = false
 		return
 
-	# ================================
-	# ✔ VALIDADO → mover estatua
-	# ================================
+	# MOVER ESTATUA
 	var local_pos = tilemap.map_to_local(new_cell)
 	var global_pos = tilemap.to_global(local_pos)
-
 	selected_statue.global_position = global_pos + Vector2(0, -10)
 
 	# Actualizar diccionario
@@ -171,7 +201,11 @@ func _move_selected_statue(direction: Vector2i):
 	print("➡ Estatua movida a:", new_cell)
 	print("🔢 Movimientos restantes:", remaining_moves)
 
-	# Fin: se requiere presionar E de nuevo
+	# 🔥 NUEVA VALIDACIÓN: ¿LLEGÓ A LA BASE?
+	var player_id := 7 if selected_statue.texture == statue_fire else 8
+	_check_statue_reached_base(player_id, new_cell)
+
+	# Fin: salir de modo mover
 	selected_statue = null
 	move_mode = false
 
