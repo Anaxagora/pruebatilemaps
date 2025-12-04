@@ -4,6 +4,7 @@ extends Node2D
 @onready var tilemap = $TileMapLayer
 @onready var ui = $"../UI"
 @onready var statue_manager = $StatueManager
+@onready var gamehud = $"../HUD/GameHUD"
 func _ready() -> void:
 	pass
 
@@ -11,10 +12,12 @@ func next_turn():
 	# Alternar jugador
 	if tilemap.current_player_tile == 7:
 		tilemap.current_player_tile = 8
+		gamehud.set_turno(8)
 		rotation = 0
 		position = Vector2i(0.0, 0.0)
 	else:
 		tilemap.current_player_tile = 7
+		gamehud.set_turno(7)
 		rotation = 0
 		position = Vector2i(0.0, 0.0)
 	# 🟧 Reiniciar movimientos
@@ -24,5 +27,3 @@ func next_turn():
 	print("🔄 Turno del jugador: ", tilemap.current_player_tile)
 	ui.mostrar_turno(current_turn)
 	camera.rotar_camara(current_turn)
-
-	

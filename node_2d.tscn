@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c7efrafhyk3f1"]
+[gd_scene load_steps=29 format=3 uid="uid://c7efrafhyk3f1"]
 
 [ext_resource type="Texture2D" uid="uid://bxpf7wyf8h1gi" path="res://dice_1.png" id="1_d21ai"]
 [ext_resource type="Script" uid="uid://bmpytk8e5v31t" path="res://node_2d.gd" id="1_hqns4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b317857qo4veg" path="res://dice_question.png" id="14_nr8wp"]
 [ext_resource type="Script" uid="uid://btx2srynnvhgm" path="res://hud.gd" id="14_ta5nu"]
 [ext_resource type="Script" uid="uid://c65rs2a524fdb" path="res://help_menu_button.gd" id="16_flf07"]
+[ext_resource type="Script" uid="uid://1kweel2pr441" path="res://GameHUD.gd" id="18_k73cj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rj586"]
 texture = ExtResource("7_rj586")
@@ -119,3 +120,41 @@ offset_top = -324.0
 offset_right = 40.0
 offset_bottom = -284.0
 grow_vertical = 2
+
+[node name="GameHUD" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 225.0
+offset_right = -152.0
+offset_bottom = 225.0
+grow_horizontal = 0
+script = ExtResource("18_k73cj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameHUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelJugadorNaranja" type="Label" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelMovNaranja" type="Label" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPtsNaranja" type="Label" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelJugadorAzul" type="Label" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelMovAzul" type="Label" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPtsAzul" type="Label" parent="HUD/GameHUD/VBoxContainer"]
+layout_mode = 2

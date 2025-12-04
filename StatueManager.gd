@@ -35,13 +35,13 @@ func _ready():
 func _check_statue_reached_base(player_id: int, cell: Vector2i):
 
 	# FIRE (id=7) llega a fila 0 (naranja – base enemiga)
-	if player_id == 7 and cell.y == max_row:
+	if player_id == 7 and cell.y == 0:
 		score_fire += 1
 		print("🔥 FIRE llegó a la base enemiga! Total:", score_fire)
 		_check_win_condition()
 
 	# WATER llega a fila final (azul – base enemiga)
-	elif player_id != 7 and cell.y == 0:
+	elif player_id != 7 and cell.y == max_row:
 		score_water += 1
 		print("💧 WATER llegó a la base enemiga! Total:", score_water)
 		_check_win_condition()
