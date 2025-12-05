@@ -8,8 +8,8 @@ extends Control
 @onready var lbl_mov_a := $VBoxContainer/LabelMovAzul
 @onready var lbl_pts_a := $VBoxContainer/LabelPtsAzul
 
-var puntos = { 7: 0, 1: 0 }
-var movimientos = { 7: 3, 1: 3 }
+var puntos = { 7: 0, 8: 0 }
+var movimientos = { 7: 3, 8: 3 }
 var turno_actual := 7   # 7 = Naranja / 1 = Azul
 
 func _ready():
@@ -42,5 +42,5 @@ func _actualizar_hud():
 		lbl_jug_a.text = "🔹 AZUL"
 	else:
 		lbl_jug_a.text = "Azul"
-	lbl_mov_a.text = "Mov: %d/3" % movimientos[1]
-	lbl_pts_a.text = "Pts: %d/2" % puntos[1]
+	lbl_mov_a.text = "Mov: %d/3" % movimientos[8]
+	lbl_pts_a.text = "Pts: %d/2" % puntos[8]

@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tilemap := $"../TileMapLayer"
+@onready var gamehud = $"../../HUD/GameHUD"
 
 # Texturas de estatuas
 var statue_fire := preload("res://fire.png")
@@ -30,36 +31,56 @@ func _ready():
 
 
 # ============================================================
-#              FUNCIÓN PARA DETECTAR LLEGADA A BASE
+#      FUNCIÓN PARA DETECTAR LLEGADA A BASE Y ELIMINAR ESTATUA
 # ============================================================
 func _check_statue_reached_base(player_id: int, cell: Vector2i):
 
-	# FIRE (id=7) llega a fila 0 (naranja – base enemiga)
-	if player_id == 7 and cell.y == 0:
+	# FIRE (id=7) llega al extremo inferior (base enemiga azul)
+	if player_id == 7 and cell.y == max_row:
 		score_fire += 1
+		gamehud.sumar_punto(player_id)
 		print("🔥 FIRE llegó a la base enemiga! Total:", score_fire)
+
+		_remove_statue_at_cell(cell)
 		_check_win_condition()
 
-	# WATER llega a fila final (azul – base enemiga)
-	elif player_id != 7 and cell.y == max_row:
+	# WATER llega al extremo superior (base enemiga naranja)
+	elif player_id != 7 and cell.y == 0:
 		score_water += 1
+		gamehud.sumar_punto(player_id)
 		print("💧 WATER llegó a la base enemiga! Total:", score_water)
+
+		_remove_statue_at_cell(cell)
 		_check_win_condition()
-
-
+# ============================================================
+#     ELIMINA LA ESTATUA TRAS 3 SEGUNDOS DE LLEGAR A LA BASE
+# ============================================================
+func _remove_statue_at_cell(cell: Vector2i) -> void:
+	if not statues.has(cell):
+		return
+	var statue = statues[cell]
+	# ⏳ Esperar 3 segundos ANTES de eliminar la estatua
+	await get_tree().create_timer(3.0).timeout
+	# Si la estatua sigue existiendo y no fue borrada por otra razón:
+	if is_instance_valid(statue):
+		statue.queue_free()
+	statues.erase(cell)
+	print("🗑 Estatua eliminada después de 3 segundos, celda:", cell)
 # ============================================================
 #                     FUNCIÓN DE VICTORIA
 # ============================================================
 func _check_win_condition():
 	if score_fire >= 2:
 		print("\n🏆 ¡GANÓ FIRE!")
-		get_tree().quit()
-
+		_close_game_delayed()
+	
 	if score_water >= 2:
 		print("\n🏆 ¡GANÓ WATER!")
-		get_tree().quit()
-
-
+		_close_game_delayed()
+func _close_game_delayed():
+	print("🔔 El juego se cerrará en 5 segundos…")
+	await get_tree().create_timer(5.0).timeout
+	get_tree().quit()
 # ============================================================
 #                CREAR ESTATUA AL DESPLEGAR DADO
 # ============================================================
@@ -204,7 +225,7 @@ func _move_selected_statue(direction: Vector2i):
 	# 🔥 NUEVA VALIDACIÓN: ¿LLEGÓ A LA BASE?
 	var player_id := 7 if selected_statue.texture == statue_fire else 8
 	_check_statue_reached_base(player_id, new_cell)
-
+	gamehud.set_movimientos(player_id,remaining_moves)
 	# Fin: salir de modo mover
 	selected_statue = null
 	move_mode = false
